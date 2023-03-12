@@ -7,7 +7,7 @@
         <methods>
           <include name="init"/>
           <include name="teardown"/>
-          <include name="verifyUi"/>
+          <include name="verifyForgotPassword"/>
         </methods>
       </class> <!-- selenium.academy.testresources.BasicChecks -->
     </classes>

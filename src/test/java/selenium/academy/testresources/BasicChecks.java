@@ -33,6 +33,12 @@ public class BasicChecks extends BaseTest {
 		lp.verifyUIElements();
 	}
 	
+	@Test
+	public void verifyForgotPassword() {
+		LandingPage lp=new LandingPage(driver);	
+		lp.forgotPassword("best@test.com", "test1234");
+	}
+	
 	@AfterMethod
 	public void teardown() {
 		
