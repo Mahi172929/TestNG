@@ -29,14 +29,27 @@ public class BasicChecks extends BaseTest {
 	}
 	@DataProvider(name="getLoginDetails")
 	public Object[][] loginDetails(){
-		return new Object[][] {{"t.maheshbsc@gmail.com","Qwe213as@"}, {"test@test.com","Qwe213as@"}};
+		List<Map<String, String>> dataList = new ArrayList<>();
+		String ExcelFile="C:\\Users\\tmahe\\eclipse-workspace\\academy\\src\\main\\java\\selenium\\academy\\testdata//LoginData.xlsx";
+		//ExcelUtility excel=new ExcelUtility();
+		dataList=ExcelUtility.getExcelDataAsListofMaps(ExcelFile, "Login");
+		//System.out.println("Size is "+dataList.size());
+		Object[][] testData=new Object[dataList.size()][3];
+		for(int i=0;i<dataList.size();i++) {
+			testData[i][0]=dataList.get(i).get("Email");
+			testData[i][1]=dataList.get(i).get("Password");
+			testData[i][2]=dataList.get(i).get("Result");
+		}
+		//System.out.println("Data is "+testData);
+		return testData;
 		
 	}
 	
 	@Test(dataProvider="getLoginDetails")
-	public void login(String UserName,String Password) throws IOException {
+	public void login(String Email,String Password,String Result) throws IOException {
+		System.out.println("Login testStarted");
 		LandingPage lp=new LandingPage(driver);	
-		lp.loginToApp("t.maheshbsc@test.com", "Qwe213as@");
+		lp.loginToApp(Email,Password);
 	}
 	
 	@Test
@@ -50,15 +63,15 @@ public class BasicChecks extends BaseTest {
 		LandingPage lp=new LandingPage(driver);	
 		lp.forgotPassword("best@test.com", "test1234");
 	}
+	
+	
 	@Test
 	public void getExcelDataTest() {
 		List<Map<String, String>> dataList = new ArrayList<>();
 		String ExcelFile="C:\\Users\\tmahe\\eclipse-workspace\\academy\\src\\main\\java\\selenium\\academy\\testdata//LoginData.xlsx";
-		ExcelUtility excel=new ExcelUtility();
-		dataList=excel.getExcelDataAsListofMaps(ExcelFile, "Login");
+		//ExcelUtility excel=new ExcelUtility();
+		dataList=ExcelUtility.getExcelDataAsListofMaps(ExcelFile, "Login");
 		System.out.println(dataList);
-		
-		
 	}
 	
 	@AfterMethod
