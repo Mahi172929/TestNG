@@ -44,12 +44,33 @@ public class BasicChecks extends BaseTest {
 		return testData;
 		
 	}
+	@DataProvider(name="getRegistrationData")
+	public Object[][] RegistrationDetails(){
+		List<Map<String,String>> dataList = new ArrayList<>();
+		String ExcelFile="C:\\Users\\tmahe\\eclipse-workspace\\academy\\src\\main\\java\\selenium\\academy\\testdata//LoginData.xlsx";
+		dataList=ExcelUtility.getExcelDataAsListofMaps(ExcelFile, "Registration");
+		Object[][] testData=new Object[dataList.size()][9];
+		for(int i=0;i<dataList.size();i++) {
+			testData[i][0]=dataList.get(i).get("FirstName");
+			testData[i][1]=dataList.get(i).get("LastName");
+			testData[i][2]=dataList.get(i).get("Email");
+			testData[i][3]=dataList.get(i).get("PhoneNumber");
+			testData[i][4]=dataList.get(i).get("Occupation");
+			testData[i][5]=dataList.get(i).get("Gender");
+			testData[i][6]=dataList.get(i).get("Password");
+			testData[i][7]=dataList.get(i).get("ConfirmPassword");
+			testData[i][8]=dataList.get(i).get("Results");
+		}
+		
+		return testData;
+		
+	}
 	
 	@Test(dataProvider="getLoginDetails")
 	public void login(String Email,String Password,String Result) throws IOException {
 		System.out.println("Login testStarted");
 		LandingPage lp=new LandingPage(driver);	
-		lp.loginToApp(Email,Password);
+		lp.loginToApp(Email,Password,Result);
 	}
 	
 	@Test
@@ -65,13 +86,10 @@ public class BasicChecks extends BaseTest {
 	}
 	
 	
-	@Test
-	public void getExcelDataTest() {
-		List<Map<String, String>> dataList = new ArrayList<>();
-		String ExcelFile="C:\\Users\\tmahe\\eclipse-workspace\\academy\\src\\main\\java\\selenium\\academy\\testdata//LoginData.xlsx";
-		//ExcelUtility excel=new ExcelUtility();
-		dataList=ExcelUtility.getExcelDataAsListofMaps(ExcelFile, "Login");
-		System.out.println(dataList);
+	@Test(dataProvider ="getRegistrationData")
+	public void verifyRegistration(String Fname,String Lname,String Email,String Phone,String Occupation,String Gender,String Password ,String ConfirmPassword,String Results) {
+		LandingPage lp=new LandingPage(driver);	
+		lp.verifyRegistration(Fname,Lname,Email,Phone,Occupation,Gender,Password,ConfirmPassword,Results);
 	}
 	
 	@AfterMethod

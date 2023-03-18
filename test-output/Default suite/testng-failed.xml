@@ -7,7 +7,7 @@
         <methods>
           <include name="init"/>
           <include name="teardown"/>
-          <include name="login"/>
+          <include name="verifyRegistration" invocation-numbers="0 1"/>
         </methods>
       </class> <!-- selenium.academy.testresources.BasicChecks -->
     </classes>

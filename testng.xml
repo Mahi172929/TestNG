@@ -3,7 +3,10 @@
 <suite name="Academic">
   <test thread-count="5" name="Test">
     <classes>
-      <class name="selenium.academy.testresources.AppTest"/>
+      <class name="selenium.academy.testresources.BasicChecks">
+      		<methods><exclude name="verifyRegistration1" /></methods>
+      </class>
+      
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Academic -->
