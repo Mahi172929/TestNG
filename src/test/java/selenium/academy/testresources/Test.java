@@ -1,4 +1,4 @@
-package selenium.academy.tests;
+package selenium.academy.testresources;
 
 public class Test {
 

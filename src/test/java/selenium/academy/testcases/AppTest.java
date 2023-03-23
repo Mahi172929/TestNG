@@ -1,4 +1,4 @@
-package selenium.academy.testresources;
+package selenium.academy.testcases;
 
 import org.testng.annotations.Test;
 

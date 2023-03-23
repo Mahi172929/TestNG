@@ -1,4 +1,4 @@
-package selenium.academy.testresources;
+package selenium.academy.testcases;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,8 +14,8 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import selenium.academy.pageobjects.LandingPage;
-import selenium.academy.tests.BaseTest;
-import selenium.academy.tests.ExcelUtility;
+import selenium.academy.testresources.BaseTest;
+import selenium.academy.testresources.ExcelUtility;
 
 public class BasicChecks extends BaseTest {
 	

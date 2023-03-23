@@ -1,4 +1,4 @@
-package selenium.academy.tests;
+package selenium.academy.testresources;
 
 import java.io.FileInputStream;
 import java.io.IOException;
